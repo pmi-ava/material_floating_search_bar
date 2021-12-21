@@ -139,6 +139,10 @@ class FloatingSearchAppBar extends ImplicitlyAnimatedWidget {
 
   /// {@macro floating_search_bar.toolbarOptions}
   final ToolbarOptions? toolbarOptions;
+
+  // !! Custom property needed for our usecase
+  final AlignmentGeometry? alignmentTextInputAndTitle;
+
   const FloatingSearchAppBar({
     Key? key,
     Duration implicitDuration = const Duration(milliseconds: 500),
@@ -180,6 +184,7 @@ class FloatingSearchAppBar extends ImplicitlyAnimatedWidget {
     this.textInputType = TextInputType.text,
     this.autocorrect = true,
     this.toolbarOptions,
+    this.alignmentTextInputAndTitle
   })  : assert(progress == null || (progress is num || progress is bool)),
         super(key, implicitDuration, implicitCurve);
 
@@ -529,7 +534,7 @@ class FloatingSearchAppBarState extends ImplicitlyAnimatedWidgetState<
         ),
         Expanded(
           child: Stack(
-            alignment: AlignmentDirectional.centerStart,
+            alignment: widget.alignmentTextInputAndTitle ?? AlignmentDirectional.centerStart,
             children: <Widget>[
               _buildInputField(),
               buildGradient(isLeft: true),
