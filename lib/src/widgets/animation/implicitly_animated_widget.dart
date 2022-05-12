@@ -64,6 +64,12 @@ abstract class ImplicitlyAnimatedWidgetState<T,
   T lerp(T a, T b, double t);
 
   @override
+  void didChangeDependencies() {
+    _controller.removeListener(() {});
+    super.didChangeDependencies();
+  }
+
+  @override
   void dispose() {
     _controller.dispose();
     super.dispose();
