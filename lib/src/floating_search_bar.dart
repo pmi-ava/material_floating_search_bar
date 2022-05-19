@@ -541,7 +541,9 @@ class FloatingSearchBarState
     _offset = 0.0;
 
     if (!widget.isScrollControlled) {
-      _scrollController.jumpTo(0.0);
+      if (_scrollController.hasClients) {
+        _scrollController.jumpTo(0.0);
+      }
     }
   }
 
